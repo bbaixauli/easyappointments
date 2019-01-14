@@ -36,6 +36,7 @@ perform the following steps in order to install the system on your server:
 * Copy the "easyappointments" source folder on your server.
 * Make sure that the "storage" directory is writable.
 * Rename the "config-sample.php" file to "config.php" and set your server properties.
+* [BGB] Update mail configuration in application/config/email.php (set protocol to smtp and add smtp_host)
 * Open your browser on the Easy!Appointments URL and follow the installation guide.
 * That's it! You can now use Easy!Appointments at your will.
 
