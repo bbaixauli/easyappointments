@@ -292,6 +292,7 @@ $lang['privacy_policy'] = 'Πολιτική Απορρήτου';
 $lang['display_privacy_policy'] = 'Εμφάνιση Πολιτική Απορρήτου';
 $lang['privacy_policy_content'] = 'Περιεχόμενο Πολιτικής Απορρήτου';
 $lang['website_using_cookies_to_ensure_best_experience'] = 'Αυτή η ιστοσελίδα χρησιμοποιεί cookies για την παροχή της καλύτερης δυνατής εμπειρίας χρήστη.';
+$lang['learn_more'] = 'Learn more.';
 $lang['read_and_agree_to_terms_and_conditions'] = 'Διάβασα και αποδέχομαι τους {$link}Όρους & Προϋποθέσεις{/$link}.';
 $lang['read_and_agree_to_privacy_policy'] = 'Διάβασα και αποδέχομαι την {$link}Πολιτική Απορρήτου{/$link}.';
 $lang['delete_personal_information_hint'] = 'Διαγραφή όλων των προσωπικών πληροφοριών από το σύστημα.';

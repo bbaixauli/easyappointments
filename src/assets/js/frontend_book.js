@@ -76,7 +76,8 @@ window.FrontendBook = window.FrontendBook || {};
                 },
                 content: {
                     message: EALang.website_using_cookies_to_ensure_best_experience,
-                    dismiss: 'OK'
+                    dismiss: 'OK',
+                    link: EALang.learn_more
                 },
             });
 

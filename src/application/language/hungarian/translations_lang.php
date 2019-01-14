@@ -292,6 +292,7 @@ $lang['privacy_policy'] = 'Privacy Policy';
 $lang['display_privacy_policy'] = 'Display Privacy Policy';
 $lang['privacy_policy_content'] = 'Privacy Policy Content';
 $lang['website_using_cookies_to_ensure_best_experience'] = 'This website uses cookies to ensure you get the best experience on our website.';
+$lang['learn_more'] = 'Learn more.';
 $lang['read_and_agree_to_terms_and_conditions'] = 'I have read and agree to the {$link}Terms & Conditions{/$link}.';
 $lang['read_and_agree_to_privacy_policy'] = 'I have read and agree to the {$link}Privacy Policy{/$link}.';
 $lang['delete_personal_information_hint'] = 'Delete all personal information from the system.';
