@@ -105,7 +105,7 @@ class Backend_api extends CI_Controller {
             // If the current user is a provider he must only see his own appointments. 
             if ($roleSlug === DB_SLUG_PROVIDER)
             {
-                foreach ($response['appointments'] as $index => $appointment)
+                foreach ($response['appointments'] as $index => &$appointment)
                 {
                     if ((int)$appointment['id_users_provider'] !== (int)$userId)
                     {
@@ -113,7 +113,7 @@ class Backend_api extends CI_Controller {
                     }
                 }
 
-                foreach ($response['unavailabilities'] as $index => $unavailability)
+                foreach ($response['unavailabilities'] as $index => &$unavailability)
                 {
                     if ((int)$unavailability['id_users_provider'] !== (int)$userId)
                     {
@@ -127,7 +127,7 @@ class Backend_api extends CI_Controller {
             {
                 $this->load->model('secretaries_model');
                 $providers = $this->secretaries_model->get_row($userId)['providers'];
-                foreach ($response['appointments'] as $index => $appointment)
+                foreach ($response['appointments'] as $index => &$appointment)
                 {
                     if ( ! in_array((int)$appointment['id_users_provider'], $providers))
                     {
@@ -135,7 +135,7 @@ class Backend_api extends CI_Controller {
                     }
                 }
 
-                foreach ($response['unavailabilities'] as $index => $unavailability)
+                foreach ($response['unavailabilities'] as $index => &$unavailability)
                 {
                     if ( ! in_array((int)$unavailability['id_users_provider'], $providers))
                     {
