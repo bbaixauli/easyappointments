@@ -142,6 +142,7 @@ $lang['customer_deleted'] = 'Cliente eliminado exitosamente';
 $lang['current_view'] = 'Vista actual';
 $lang['working_plan'] = 'Esquema del horario laboral';
 $lang['reset_plan'] = 'Restaurar el esquema del horario laboral';
+// First day in week
 $lang['first_day'] = 1;
 $lang['monday'] = 'Lunes';
 $lang['tuesday'] = 'Martes';
