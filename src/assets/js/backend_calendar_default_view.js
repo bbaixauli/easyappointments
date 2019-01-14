@@ -1125,7 +1125,8 @@ window.BackendCalendarDefaultView = window.BackendCalendarDefaultView || {};
             height: _getCalendarHeight(),
             editable: true,
             firstDay: EALang.first_day || 0,
-            snapDuration: '00:30:00',
+            // Indica el slot para modificar un evento arrastrando
+            snapDuration: '00:15:00',
             timeFormat: timeFormat,
             slotLabelFormat: slotTimeFormat,
             allDayText: EALang.all_day,
@@ -1136,7 +1137,11 @@ window.BackendCalendarDefaultView = window.BackendCalendarDefaultView || {};
                 center: 'title',
                 right: 'agendaDay,agendaWeek,month'
             },
-
+            // BGB: Mostramos solo los días de diario de 8 a 15 horas y con un slot de 15 minutos para que se vea mejor
+            weekends: false,
+            minTime: "08:00:00",
+            maxTime: "15:00:00",
+            slotDuration: '00:15:00',
             // Selectable
             selectable: true,
             selectHelper: true,
