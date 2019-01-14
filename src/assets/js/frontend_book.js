@@ -243,7 +243,8 @@ window.FrontendBook = window.FrontendBook || {};
 
             // Add the "Any Provider" entry.
             if ($('#select-provider option').length >= 1) {
-                $('#select-provider').append(new Option('- ' + EALang.any_provider + ' -', 'any-provider'));
+                // BGB: seleccionamos por defecto el "cualquier proveedor"
+                $('#select-provider').append(new Option('- ' + EALang.any_provider + ' -', 'any-provider', true, true));
             }
 
             FrontendBookApi.getUnavailableDates($('#select-provider').val(), $(this).val(),
