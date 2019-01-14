@@ -61,6 +61,11 @@ window.FrontendBook = window.FrontendBook || {};
             window.console = function () {
             }; // IE compatibility
         }
+
+        // BGB: para que se vea bien en el portal, si es un iframe, quitamos el background-color
+        if (window.self !== window.top){
+            $('BODY').css("background-color", "inherit")
+        }
         
         if (GlobalVariables.displayCookieNotice) {
             var ua = window.navigator.userAgent;
@@ -76,7 +81,10 @@ window.FrontendBook = window.FrontendBook || {};
                         text: '#fff'
                     },
                     button: {
+                        /*
                         background: '#3DD481',
+                        text: '#ffffff'*/
+                        background: '#777',
                         text: '#ffffff'
                     }
                 },
