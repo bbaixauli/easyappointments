@@ -146,6 +146,7 @@ class Email {
             '$customer_email' => $customer['email'],
             '$customer_phone' => $customer['phone_number'],
             '$customer_address' => $customer['address'],
+            '$base_url' => asset_url('/'),
 
             // Translations
             'Appointment Details' => $this->framework->lang->line('appointment_details_title'),
@@ -333,10 +334,22 @@ class Email {
         {
             $mailer->isSMTP();
             $mailer->Host = $this->config['smtp_host'];
-            $mailer->SMTPAuth = TRUE;
-            $mailer->Username = $this->config['smtp_user'];
-            $mailer->Password = $this->config['smtp_pass'];
-            $mailer->SMTPSecure = $this->config['smtp_crypto'];
+            if ($this->config['smtp_user'] != '') {
+                $mailer->SMTPAuth = TRUE;
+                $mailer->Username = $this->config['smtp_user'];
+                $mailer->Password = $this->config['smtp_pass'];
+                $mailer->SMTPSecure = $this->config['smtp_crypto'];
+            } else {
+                $mailer->SMTPOptions = array(
+                    'ssl' => array(
+                        'verify_peer' => false,
+                        'verify_peer_name' => false,
+                        'allow_self_signed' => true
+                    )
+                );                
+                $mailer->SMTPAuth = false;
+                $mailer->SMTPSecure = '';
+            }
             $mailer->Port = $this->config['smtp_port'];
         }
 
