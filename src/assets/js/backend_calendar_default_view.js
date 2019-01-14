@@ -27,6 +27,9 @@ window.BackendCalendarDefaultView = window.BackendCalendarDefaultView || {};
 
     // Variables
     var lastFocusedEventData; // Contains event data for later use.
+    
+    // BGB: paleta de colores para los eventos - obtenida de https://mycolor.space/?hex=%2396004B&sub=1
+    var eventsColors = ['#96004B', '#A3372C', '#7E2566', '#9B6118', '#5F3873', '#858429', '#414373', '#2E4868', '#66A15B', '#2F4858', '#3DBA9A'];
 
     /**
      * Bind event handlers for the calendar view.
@@ -766,16 +769,41 @@ window.BackendCalendarDefaultView = window.BackendCalendarDefaultView || {};
             // Add appointments to calendar.
             var calendarEvents = [];
             var $calendar = $('#calendar');
+            
+            var colorCounter = 0;
+            var elementColors = {};
 
             $.each(response.appointments, function (index, appointment) {
+                // BGB: si el tipo es servicio, mostramos el proveedor, si es  proveedor mostramos el servicio
+                var title = '';
+                var id = '';
+                
+                if (filterType === FILTER_TYPE_PROVIDER) {
+                    title += appointment.service.name;
+                    id = appointment.service.id;
+                } else {
+                    title += appointment.provider.first_name + ' '
+                          + appointment.provider.last_name;
+                    id = appointment.provider.id;
+                }
+                if (!(id in elementColors)) {
+                    elementColors[id] = eventsColors[colorCounter];
+                    colorCounter++;
+                    // Tenemos que tener cuidado porque pueden ser más elementos de los que tenemos
+                    if (colorCounter > eventsColors.length)
+                        colorCounter = 0;
+                }
+                title += ' - '
+                      + appointment.customer.first_name + ' '
+                      + appointment.customer.last_name;
+                      
                 var event = {
                     id: appointment.id,
-                    title: appointment.service.name + ' - '
-                    + appointment.customer.first_name + ' '
-                    + appointment.customer.last_name,
+                    title: title,
                     start: moment(appointment.start_datetime),
                     end: moment(appointment.end_datetime),
                     allDay: false,
+                    color: elementColors[id],
                     data: appointment // Store appointment data for later use.
                 };
 
