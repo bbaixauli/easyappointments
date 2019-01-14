@@ -4,11 +4,13 @@
 </head>
 <body style="font: 13px arial, helvetica, tahoma;">
     <div class="email-container" style="width: 650px; border: 1px solid #eee;">
-        <div id="header" style="background-color: #3DD481; border-bottom: 4px solid #1A865F;
-                height: 45px; padding: 10px 15px;">
+        <div id="header" style="background-color: #96004b; border-bottom: 4px solid #b94780;
+                margin: 15px 0; height:73px;">
+            <br>
             <strong id="logo" style="color: white; font-size: 20px;
-                    text-shadow: 1px 1px 1px #8F8888; margin-top: 10px; display: inline-block">
-                    $company_name</strong>
+                    text-shadow: 1px 1px 1px #8F8888; margin: 25px; display: inline-block">
+                    &nbsp;$company_name</strong>
+            <br>
         </div>
 
         <div id="content" style="padding: 10px 15px;">

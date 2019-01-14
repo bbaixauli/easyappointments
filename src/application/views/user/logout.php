@@ -28,7 +28,8 @@
             height: 100vh;
             display: table-cell;
             vertical-align: middle;
-            background-color: #CAEDF3;
+            /* background-color: #CAEDF3; */
+            background-color: #ebebeb;
         }
 
         #logout-frame {

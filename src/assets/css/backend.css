@@ -20,8 +20,10 @@ root {
 /* BACKEND GENERAL ELEMENTS
    -------------------------------------------------------------------- */
 #header {
-    background-color: #39c678;
-    border-bottom: 4px solid #c0f1d6;
+    /* background-color: #39c678;
+    border-bottom: 4px solid #c0f1d6; */
+    border-bottom: 4px solid #b94780;
+    background-color: #96004b;
     box-shadow: none;
     border-radius: 0;
     margin-bottom: 15px;
@@ -66,12 +68,14 @@ root {
 }
 
 #header #header-menu .menu-item:hover:not(.active) {
-    background-color: #2A8F57;
+    /* background-color: #2A8F57; */
+    background-color: #800140;
 }
 
 #header #header-menu .active {
     color: #C5FFD6;
-    background: #29A067;
+    /* background: #29A067; */
+    background: #af0158;
 }
 
 #footer {
@@ -155,8 +159,12 @@ body .modal .modal-title {
 
 body .modal-header {
     padding: 12px 15px;
-    background: #39c678;
+    /*
+    background: #39c678; 
     border-bottom: 4px solid #c0f1d6;
+    */
+    background: #96004b;
+    border-bottom: 4px solid #b94780;
 }
 
 body .modal-header h3 {
@@ -252,7 +260,8 @@ body legend {
 
 .backend-page .filter-records .results .entry.selected {
     background-color: #F4F4F4;
-    border-right: 5px solid #39c678;
+    /* border-right: 5px solid #39c678; */
+    border-right: 5px solid #96004b;
 }
 
 .backend-page .filter-records .results hr {
@@ -290,9 +299,11 @@ body legend {
 #calendar-page #calendar-filter label {
     float: left;
     display: inline-block;
-    margin: 0 10px 0 0;
+    margin: 2px 10px 0 0;
+    /*
     margin-right: 7px;
     margin-bottom: 0;
+    */
     font-size: 18px;
     font-weight: lighter;
 }
@@ -357,7 +368,7 @@ body legend {
 }
 
 #calendar .fc-time-grid-event.fc-short .fc-title {
-    font-size: .7em;
+    /* font-size: .7em; */
 }
 
 #calendar .fc-header-title h2 {
@@ -390,8 +401,12 @@ body legend {
 }
 
 #calendar .fc-event {
+    /*
     border: 1px solid #4790CA;
     background-color: #4790CA;
+    */
+    border: 1px solid rgb(150, 0, 75);
+    background-color: rgb(150, 0, 75);
 }
 
 #existing-customers-list {
@@ -629,7 +644,8 @@ body .form-horizontal .controls {
 
 #users-page #providers .switch-view .current {
     color: #FFF;
-    background: #39c678;
+    /* background: #39c678; */
+    background: #96004b;
 }
 
 #users-page #providers .details-view,

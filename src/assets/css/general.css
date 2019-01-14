@@ -20,10 +20,12 @@ body .custom-qtip {
     border-radius: 0;
     padding: 10px;
     box-shadow: 1px 1px 3px #767676;
-    background: #EFFDF6;
+    /* background: #EFFDF6; */
+    background: #eacfdd;
     font-size: 12px;
     line-height: 20px;
-    color: #258D53;
+    /* color: #258D53; */
+    color: #52233b;
 }
 
 body .ui-widget {
@@ -42,13 +44,15 @@ body .ui-dialog .ui-dialog-titlebar-close {
 }
 
 body .ui-draggable .ui-dialog-titlebar {
-    background: #39c678;
+    /* background: #39c678; */
+    background: #96004b;
     color: #FFF;
     font-size: 1.5em;
     font-weight: lighter;
     padding: 12px 10px;
     border: none;
-    border-bottom: 4px solid #c0f1d6;
+    /* border-bottom: 4px solid #c0f1d6; */
+    border-bottom: 4px solid #b94780;
     margin-bottom: 10px;
 }
 
@@ -74,7 +78,8 @@ body .ui-dialog #error-technical {
 }
 
 body .ui-widget.ui-widget-content {
-    border: 1px solid #3DD481;
+    /* border: 1px solid #3DD481; */
+    border: 1px solid #96004b;
     padding: 0;
 }
 
@@ -84,7 +89,8 @@ body #ui-datepicker-div {
 
 body .ui-datepicker .ui-widget-header {
     border: none;
-    background: #3DD481;
+    /* background: #3DD481; */
+    background: #96004b;
     border-radius: 0;
 }
 
@@ -98,7 +104,8 @@ body .ui-datepicker .ui-datepicker-title {
 }
 
 body .ui-datepicker th {
-    background: #3DD481;
+    /* background: #3DD481; */
+    background: #96004b;
     color: #FFF;
 }
 
@@ -120,7 +127,8 @@ body .ui-datepicker td span {
 html body .ui-datepicker td a.ui-state-active {
     color: #FFF !important;
     font-weight: bold !important;
-    background: #3DD481 !important;
+    /* background: #3DD481 !important; */
+    background: #96004b !important;
     border-radius: 50px;
     width: 22px;
     height: 22px;
@@ -129,7 +137,8 @@ html body .ui-datepicker td a.ui-state-active {
 }
 
 body .ui-datepicker td a.ui-state-highlight {
-    background: #80E3AD !important;
+    /* background: #80E3AD !important; */
+    background: #b94780 !important;
     border-radius: 67px;
     color: #FFF !important;
     width: 22px;
