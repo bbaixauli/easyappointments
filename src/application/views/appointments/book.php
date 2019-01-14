@@ -256,7 +256,7 @@
                                         '{/$link}' => '</a>'
                                     ])
                                 ?>
-                            </label>
+                            </label> *
                             <br>
                             <?php endif ?>
 
@@ -268,7 +268,7 @@
                                         '{$link}' => '<a href="#" data-toggle="modal" data-target="#privacy-policy-modal">',
                                         '{/$link}' => '</a>'
                                     ])
-                                ?>
+                                ?> *
                             </label>
                             <br>
                             <?php endif ?>
