@@ -63,11 +63,17 @@ window.FrontendBook = window.FrontendBook || {};
         }
         
         if (GlobalVariables.displayCookieNotice) {
+            var ua = window.navigator.userAgent;
+            var is_ie = /MSIE|Trident/.test(ua);
+
             cookieconsent.initialise({
                 palette: {
                     popup: {
-                        background: '#ffffffbd',
-                        text: '#666666'
+                        /*background: '#ffffffbd',
+                        text: '#666666'*/
+                        // BGB: IE no acepta transparencia en el background-color (salía blanco)
+                        background: '#202020' + (is_ie ? '': 'e6'),
+                        text: '#fff'
                     },
                     button: {
                         background: '#3DD481',
