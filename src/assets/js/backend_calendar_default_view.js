@@ -946,7 +946,9 @@ window.BackendCalendarDefaultView = window.BackendCalendarDefaultView || {};
                                     $calendar.fullCalendar('renderEvent', unavailablePeriod, false);
                                 });
 
-                                $.each(workingPlan, function (index, workingDay) {
+                                for (var x=0; x < 7; x++) {
+                                //$.each(workingPlan, function (index, workingDay) {
+                                    var workingDay = Object.values(workingPlan)[currentDateStart.day()];
                                     if (workingDay == null) {
                                         // Add a full day unavailable event.
                                         unavailablePeriod = {
@@ -963,7 +965,8 @@ window.BackendCalendarDefaultView = window.BackendCalendarDefaultView || {};
                                         currentDateStart.add(1, 'days');
                                         currentDateEnd.add(1, 'days');
 
-                                        return; // Go to the next loop.
+                                        //return; // Go to the next loop.
+                                        continue;
                                     }
 
                                     var start;
@@ -1039,7 +1042,8 @@ window.BackendCalendarDefaultView = window.BackendCalendarDefaultView || {};
 
                                     currentDateStart.add(1, 'days');
                                     currentDateEnd.add(1, 'days');
-                                });
+                                //});
+                                }
 
                                 break;
                         }
