@@ -14,7 +14,7 @@
 
     <link rel="stylesheet" type="text/css" href="<?= asset_url('assets/ext/jquery-ui/jquery-ui.min.css') ?>">
     <link rel="stylesheet" type="text/css" href="<?= asset_url('assets/ext/bootstrap/css/bootstrap.min.css') ?>">
-	<link rel="stylesheet" type="text/css" href="<?= asset_url('assets/css/general.css') ?>">
+    <link rel="stylesheet" type="text/css" href="<?= asset_url('assets/css/general.css') ?>">
 
     <link rel="icon" type="image/x-icon" href="<?= asset_url('assets/img/favicon.ico') ?>">
 
@@ -24,7 +24,8 @@
             height: 100vh;
             display: table-cell;
             vertical-align: middle;
-            background-color: #CAEDF3;
+            /* background-color: #CAEDF3; */
+            background-color: #ebebeb;
         }
 
         #login-frame {
@@ -56,7 +57,7 @@
         var availableLanguages = <?= json_encode($this->config->item('available_languages')) ?>;
 
         $(document).ready(function() {
-        	GeneralFunctions.enableLanguageSelection($('#select-language'));
+            GeneralFunctions.enableLanguageSelection($('#select-language'));
 
             /**
              * Event: Login Button "Click"
@@ -104,29 +105,29 @@
             <div class="form-group">
                 <label for="username"><?= lang('username') ?></label>
                 <input type="text" id="username"
-                		placeholder="<?= lang('enter_username_here') ?>"
-                		class="form-control" />
+                        placeholder="<?= lang('enter_username_here') ?>"
+                        class="form-control" />
             </div>
             <div class="form-group">
                 <label for="password"><?= lang('password') ?></label>
                 <input type="password" id="password"
-                		placeholder="<?= lang('enter_password_here') ?>"
-                		class="form-control" />
+                        placeholder="<?= lang('enter_password_here') ?>"
+                        class="form-control" />
             </div>
             <br>
 
             <button type="submit" id="login" class="btn btn-primary">
-            	<?= lang('login') ?>
+                <?= lang('login') ?>
             </button>
 
             <br><br>
 
             <a href="<?= site_url('user/forgot_password') ?>" class="forgot-password">
-            	<?= lang('forgot_your_password') ?></a>
+                <?= lang('forgot_your_password') ?></a>
             |
             <span id="select-language" class="label label-success">
-	        	<?= ucfirst($this->config->item('language')) ?>
-	        </span>
+                <?= ucfirst($this->config->item('language')) ?>
+            </span>
         </form>
     </div>
 
