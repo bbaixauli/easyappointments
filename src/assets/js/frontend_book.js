@@ -504,8 +504,13 @@ window.FrontendBook = window.FrontendBook || {};
 
         $.each(GlobalVariables.availableServices, function (index, service) {
             if (service.id == selServiceId) {
-                servicePrice = '<br>' + service.price;
-                serviceCurrency = service.currency;
+                if (service.price > 0) {
+                    servicePrice = '<br>' + service.price;
+                    serviceCurrency = service.currency;
+                } else {
+                    servicePrice = '';
+                    serviceCurrency = '';
+                }
                 return false; // break loop
             }
         });
@@ -678,7 +683,7 @@ window.FrontendBook = window.FrontendBook || {};
                     html += '[' + EALang.duration + ' ' + service.duration + ' ' + EALang.minutes + ']';
                 }
 
-                if (service.price != '' && service.price != null) {
+                if (service.price != '' && service.price != null && service.price > 0) {
                     html += '[' + EALang.price + ' ' + service.price + ' ' + service.currency + ']';
                 }
 
