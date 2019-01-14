@@ -532,13 +532,14 @@ window.BackendCalendarTableView = window.BackendCalendarTableView || {};
 
         var providers = GlobalVariables.availableProviders;
 
-        if (GlobalVariables.user.role_slug === 'provider') {
-            GlobalVariables.availableProviders.forEach(function (provider) {
-                if (provider.id == GlobalVariables.user.id) {
-                    providers = [provider];
-                }
-            });
-        }
+		// BGB: permitimos a los proveedores ver todos los datos del servicio
+        //if (GlobalVariables.user.role_slug === 'provider') {
+        //    GlobalVariables.availableProviders.forEach(function (provider) {
+        //        if (provider.id == GlobalVariables.user.id) {
+        //            providers = [provider];
+        //        }
+        //    });
+        //}
 
         if (GlobalVariables.user.role_slug === 'secretary') {
             providers = [];

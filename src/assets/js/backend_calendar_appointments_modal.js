@@ -287,6 +287,10 @@ window.BackendCalendarAppointmentsModal = window.BackendCalendarAppointmentsModa
             var sid = $('#select-service').val();
             $('#select-provider').empty();
 
+            // BGB: por defecto ponemos sin proveedor para que tengan que seleccionarlo
+            var void_option = new Option("", "", true, true);
+            $('#select-provider').append(void_option);
+
             // Automatically update the service duration.
             $.each(GlobalVariables.availableServices, function (indexService, service) {
                 if (service.id == sid) {
@@ -299,9 +303,10 @@ window.BackendCalendarAppointmentsModal = window.BackendCalendarAppointmentsModa
             // Update the providers select box.
             $.each(GlobalVariables.availableProviders, function (indexProvider, provider) {
                 $.each(provider.services, function (indexService, serviceId) {
-                    if (GlobalVariables.user.role_slug === Backend.DB_SLUG_PROVIDER && parseInt(provider.id) !== GlobalVariables.user.id) {
-                        return true; // continue
-                    }
+                    // BGB: Permitimos que el proveedor pueda crear citas para cualquier proveedor
+                    //if (GlobalVariables.user.role_slug === Backend.DB_SLUG_PROVIDER && parseInt(provider.id) !== GlobalVariables.user.id) {
+                    //    return true; // continue
+                    //}
 
                     if (GlobalVariables.user.role_slug === Backend.DB_SLUG_SECRETARY && GlobalVariables.secretaryProviders.indexOf(provider.id) === -1) {
                         return true; // continue

@@ -317,9 +317,10 @@
 
         $('#customer-appointments').empty();
         $.each(customer.appointments, function (index, appointment) {
-            if (GlobalVariables.user.role_slug === Backend.DB_SLUG_PROVIDER && parseInt(appointment.id_users_provider) !== GlobalVariables.user.id) {
-                return true; // continue
-            }
+            // BGB: Permitimos que el proveedor pueda crear citas para cualquier proveedor
+            //if (GlobalVariables.user.role_slug === Backend.DB_SLUG_PROVIDER && parseInt(appointment.id_users_provider) !== GlobalVariables.user.id) {
+            //    return true; // continue
+            //}
 
             if (GlobalVariables.user.role_slug === Backend.DB_SLUG_SECRETARY && GlobalVariables.secretaryProviders.indexOf(appointment.id_users_provider) === -1) {
                 return true; // continue

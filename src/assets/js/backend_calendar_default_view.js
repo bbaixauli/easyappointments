@@ -1252,7 +1252,8 @@ window.BackendCalendarDefaultView = window.BackendCalendarDefaultView || {};
             $('#select-filter-item optgroup:eq(0)')
                 .find('option[value="' + GlobalVariables.user.id + '"]')
                 .prop('selected', true);
-            $('#select-filter-item').prop('disabled', true);
+            // BGB: Permitimos que el proveedor pueda crear citas para cualquier proveedor
+            //$('#select-filter-item').prop('disabled', true);
         }
 
         if (GlobalVariables.user.role_slug == Backend.DB_SLUG_SECRETARY) {
