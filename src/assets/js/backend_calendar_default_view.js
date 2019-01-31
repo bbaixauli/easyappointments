@@ -31,6 +31,21 @@ window.BackendCalendarDefaultView = window.BackendCalendarDefaultView || {};
     // BGB: paleta de colores para los eventos - obtenida de https://mycolor.space/?hex=%2396004B&sub=1
     var eventsColors = ['#96004B', '#A3372C', '#7E2566', '#9B6118', '#5F3873', '#858429', '#414373', '#2E4868', '#66A15B', '#2F4858', '#3DBA9A'];
 
+    // IE no tiene la función Object.values()
+    function objectValues(obj) {
+        if (Object.values) {
+            return Object.values(obj);
+        }else {
+            var res = [];
+            for (var i in obj) {
+                if (obj.hasOwnProperty(i)) {
+                    res.push(obj[i]);
+                 }
+            }
+            return res;
+        }
+    }
+
     /**
      * Bind event handlers for the calendar view.
      */
@@ -976,7 +991,8 @@ window.BackendCalendarDefaultView = window.BackendCalendarDefaultView || {};
 
                                 for (var x=0; x < 7; x++) {
                                 //$.each(workingPlan, function (index, workingDay) {
-                                    var workingDay = Object.values(workingPlan)[currentDateStart.day()];
+                                    //var workingDay = Object.values(workingPlan)[currentDateStart.day()];
+                                    var workingDay = objectValues(workingPlan)[currentDateStart.day()];
                                     if (workingDay == null) {
                                         // Add a full day unavailable event.
                                         unavailablePeriod = {
@@ -1173,7 +1189,7 @@ window.BackendCalendarDefaultView = window.BackendCalendarDefaultView || {};
                 }
 
                 // Preselect time
-                // BGB: si la diferencia de tiempo es de 900000 (15 minutos), consideramos que no se ha seleccionado fin y ponemos la duracción por defecto
+                // BGB: si la diferencia de tiempo es de 900000 (15 minutos), consideramos que no se ha seleccionado fin y ponemos la duración por defecto
                 $('#start-datetime').datepicker('setDate', new Date(start.format('YYYY-MM-DD HH:mm:ss')));
                 if (end.time() - start.time() == 900000) 
                     end.time(start.time() + service.duration * 60000)
