@@ -485,10 +485,11 @@ window.FrontendBook = window.FrontendBook || {};
 
 
             // Validate email address.
-            if (!GeneralFunctions.validateEmail($('#email').val())) {
-                $('#email').parents('.form-group').addClass('has-error');
-                throw EALang.invalid_email;
-            }
+            // BGB: no validamos el email por si no tiene
+//            if (!GeneralFunctions.validateEmail($('#email').val())) {
+//                $('#email').parents('.form-group').addClass('has-error');
+//                throw EALang.invalid_email;
+//            }
 
             return true;
         } catch (exc) {

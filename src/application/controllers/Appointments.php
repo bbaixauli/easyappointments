@@ -255,9 +255,13 @@ class Appointments extends CI_Controller {
 
                 if ($send_customer === TRUE)
                 {
-                    $email->sendDeleteAppointment($appointment, $provider,
-                        $service, $customer, $company_settings, new Email($customer['email']),
-                        new Text($this->input->post('cancel_reason')));
+                    $recipientEmail = $customer['email'];
+                    if ( filter_var($recipientEmail, FILTER_VALIDATE_EMAIL))
+                    {
+                        $email->sendDeleteAppointment($appointment, $provider,
+                            $service, $customer, $company_settings, new Email($recipientEmail),
+                            new Text($this->input->post('cancel_reason')));
+                    }
                 }
 
             }
@@ -570,9 +574,13 @@ class Appointments extends CI_Controller {
 
                 if ($send_customer === TRUE)
                 {
-                    $email->sendAppointmentDetails($appointment, $provider,
-                        $service, $customer, $company_settings, $customer_title,
-                        $customer_message, $customer_link, new Email($customer['email']), new Text($ics_stream));
+                    $recipientEmail = $customer['email'];
+                    if ( filter_var($recipientEmail, FILTER_VALIDATE_EMAIL))
+                    {
+                        $email->sendAppointmentDetails($appointment, $provider,
+                            $service, $customer, $company_settings, $customer_title,
+                            $customer_message, $customer_link, new Email($recipientEmail), new Text($ics_stream));
+                    }
                 }
 
                 $send_provider = filter_var($this->providers_model->get_setting('notifications', $provider['id']),

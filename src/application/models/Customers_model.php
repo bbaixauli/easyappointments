@@ -221,11 +221,12 @@ class Customers_Model extends CI_Model {
         }
 
         // Validate email address
-        if ( ! filter_var($customer['email'], FILTER_VALIDATE_EMAIL))
-        {
-            throw new Exception('Invalid email address provided: '
-                . $customer['email']);
-        }
+        // BGB: No comprobamos el email por si no tiene
+        //if ( ! filter_var($customer['email'], FILTER_VALIDATE_EMAIL))
+        //{
+        //    throw new Exception('Invalid email address provided: '
+        //        . $customer['email']);
+        //}
 
         // When inserting a record the email address must be unique.
         $customer_id = (isset($customer['id'])) ? $customer['id'] : '';
