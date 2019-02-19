@@ -382,9 +382,13 @@ class Backend_api extends CI_Controller {
 
                 if ((bool)$send_customer === TRUE)
                 {
-                    $email->sendAppointmentDetails($appointment, $provider,
-                        $service, $customer, $company_settings, $customer_title,
-                        $customer_message, $customer_link, new Email($customer['email']), new Text($ics_stream));
+                    $recipientEmail = $customer['email'];
+                    if ( filter_var($recipientEmail, FILTER_VALIDATE_EMAIL))
+                    {
+                        $email->sendAppointmentDetails($appointment, $provider,
+                            $service, $customer, $company_settings, $customer_title,
+                            $customer_message, $customer_link, new Email($recipientEmail), new Text($ics_stream));
+                    }
                 }
 
                 if ($send_provider == TRUE)
@@ -511,9 +515,13 @@ class Backend_api extends CI_Controller {
 
                 if ((bool)$send_customer === TRUE)
                 {
-                    $email->sendDeleteAppointment($appointment, $provider,
-                        $service, $customer, $company_settings, new Email($customer['email']),
-                        new Text($this->input->post('delete_reason')));
+                    $recipientEmail = $customer['email'];
+                    if ( filter_var($recipientEmail, FILTER_VALIDATE_EMAIL))
+                    {
+                        $email->sendDeleteAppointment($appointment, $provider,
+                            $service, $customer, $company_settings, new Email($recipientEmail),
+                            new Text($this->input->post('delete_reason')));
+                    }
                 }
             }
             catch (Exception $exc)

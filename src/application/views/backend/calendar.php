@@ -223,43 +223,56 @@
                             <div class="col-xs-12 col-sm-6">
                                 <div class="form-group">
                                     <label for="first-name" class="control-label"><?= lang('first_name') ?> *</label>
-                                    <input id="first-name" class="required form-control">
-                                </div>
-
-                                <div class="form-group">
-                                    <label for="last-name" class="control-label"><?= lang('last_name') ?> *</label>
-                                    <input id="last-name" class="required form-control">
-                                </div>
-
-                                <div class="form-group">
-                                    <label for="email" class="control-label"><?= lang('email') ?> *</label>
-                                    <input id="email" class="required form-control">
-                                </div>
-
-                                <div class="form-group">
-                                    <label for="phone-number" class="control-label"><?= lang('phone_number') ?> *</label>
-                                    <input id="phone-number" class="required form-control">
+                                    <input type="text" id="first-name" class="required form-control" maxlength="100" />
                                 </div>
                             </div>
                             <div class="col-xs-12 col-sm-6">
                                 <div class="form-group">
-                                    <label for="address" class="control-label"><?= lang('address') ?></label>
-                                    <input id="address" class="form-control">
+                                    <label for="last-name" class="control-label"><?= lang('last_name') ?> *</label>
+                                    <input type="text" id="last-name" class="required form-control" maxlength="120" />
                                 </div>
-
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-xs-12 col-sm-6">
+                                <div class="form-group">
+                                    <label for="email" class="control-label"><?= lang('email') ?> *</label>
+                                    <input type="text" id="email" class="required form-control" maxlength="120" />
+                                    <small id="emailHelp" class="form-text text-muted">Si no tiene <?= lang('email') ?> introduzca su nombre y apellidos</small>
+                                </div>
+                            </div>
+                            <div class="col-xs-12 col-sm-6">
+                                <div class="form-group">
+                                    <label for="phone-number" class="control-label"><?= lang('phone_number') ?> *</label>
+                                    <input type="text" id="phone-number" class="required form-control" maxlength="60" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-xs-12 col-sm-6">
+                                <div class="form-group">
+                                    <label for="address" class="control-label"><?= lang('address') ?></label>
+                                    <input type="text" id="address" class="form-control" maxlength="120" />
+                                </div>
+                            </div>
+                            <div class="col-xs-12 col-sm-6">
                                 <div class="form-group">
                                     <label for="city" class="control-label"><?= lang('city') ?></label>
-                                    <input id="city" class="form-control">
+                                    <input type="text" id="city" class="form-control" maxlength="120" />
                                 </div>
-
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-xs-12 col-sm-6">
                                 <div class="form-group">
                                     <label for="zip-code" class="control-label"><?= lang('zip_code') ?></label>
-                                    <input id="zip-code" class="form-control">
+                                    <input type="text" id="zip-code" class="form-control" maxlength="120" />
                                 </div>
-
+                            </div>
+                            <div class="col-xs-12 col-sm-6">
                                 <div class="form-group">
-                                    <label for="customer-notes" class="control-label"><?= lang('notes') ?></label>
-                                    <textarea id="customer-notes" rows="2" class="form-control"></textarea>
+                                    <label for="notes" class="control-label"><?= lang('notes') ?></label>
+                                    <textarea id="notes" maxlength="500" class="form-control" rows="3"></textarea>
                                 </div>
                             </div>
                         </div>
