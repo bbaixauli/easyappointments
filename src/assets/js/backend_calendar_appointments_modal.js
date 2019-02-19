@@ -163,9 +163,8 @@ window.BackendCalendarAppointmentsModal = window.BackendCalendarAppointmentsModa
                 start.addHours(1).set({'minute': 0});
             }
 
-            $dialog.find('#start-datetime').val(GeneralFunctions.formatDate(start, GlobalVariables.dateFormat, true));
-            $dialog.find('#end-datetime').val(GeneralFunctions.formatDate(start.addMinutes(serviceDuration),
-                GlobalVariables.dateFormat, true));
+            $dialog.find('#start-datetime').datetimepicker('setDate', start);
+            $dialog.find('#end-datetime').datetimepicker('setDate', start.addMinutes(serviceDuration));
 
             // Display modal form.
             $dialog.find('.modal-header h3').text(EALang.new_appointment_title);
