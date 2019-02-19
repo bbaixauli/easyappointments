@@ -337,7 +337,8 @@ $config['cookie_secure'] = FALSE;
 | COOKIE data is encountered
 |
 */
-$config['global_xss_filtering'] = TRUE;
+// BGB: nos interesa poder meter atributos en html. Realmente sólo podría ser peligroso en el campo notes de la petición de cita y sólo se muestra como campo
+$config['global_xss_filtering'] = FALSE;
 
 /*
 |--------------------------------------------------------------------------
