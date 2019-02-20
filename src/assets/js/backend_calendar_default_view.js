@@ -1190,10 +1190,10 @@ window.BackendCalendarDefaultView = window.BackendCalendarDefaultView || {};
 
                 // Preselect time
                 // BGB: si la diferencia de tiempo es de 900000 (15 minutos), consideramos que no se ha seleccionado fin y ponemos la duración por defecto
-                $('#start-datetime').datepicker('setDate', new Date(start.format('YYYY-MM-DD HH:mm:ss')));
+                $('#start-datetime').datepicker('setDate', Date.parseExact(start.format('YYYY-MM-DD HH:mm:ss'), 'yyyy-MM-dd HH:mm:ss'));
                 if (end.time() - start.time() == 900000) 
                     end.time(start.time() + service.duration * 60000)
-                $('#end-datetime').datepicker('setDate', new Date(end.format('YYYY-MM-DD HH:mm:ss')));
+                $('#end-datetime').datepicker('setDate', Date.parseExact(end.format('YYYY-MM-DD HH:mm:ss'), 'yyyy-MM-dd HH:mm:ss'));
 
                 return false;
             },
