@@ -140,6 +140,7 @@ window.BackendCalendarAppointmentsModal = window.BackendCalendarAppointmentsModa
             } else {
                 $dialog.find('#select-service option[value="'
                     + $('#select-filter-item').val() + '"]').prop('selected', true);
+                $dialog.find('#select-service').trigger('change')
             }
 
             var serviceDuration = 0;
@@ -495,7 +496,8 @@ window.BackendCalendarAppointmentsModal = window.BackendCalendarAppointmentsModa
             }
 
             // Check email address.
-            if (!GeneralFunctions.validateEmail($dialog.find('#email').val())) {
+            var email = $('#email').val();
+            if (email && email != '' && !GeneralFunctions.validateEmail(email)) {
                 $dialog.find('#email').closest('.form-group').addClass('has-error');
                 throw EALang.invalid_email;
             }

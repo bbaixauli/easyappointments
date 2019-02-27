@@ -104,8 +104,8 @@
                     </div>
 
                     <div class="form-group">
-                        <label class="control-label" for="email"><?= lang('email') ?> *</label>
-                        <input id="email" class="form-control required">
+                        <label class="control-label" for="email"><?= lang('email') ?></label>
+                        <input id="email" class="form-control">
                     </div>
 
                     <div class="form-group">

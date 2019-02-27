@@ -263,7 +263,8 @@
             }
 
             // Validate email address.
-            if (!GeneralFunctions.validateEmail($('#email').val())) {
+            var email = $('#email').val();
+            if (email && email != '' && !GeneralFunctions.validateEmail(email)) {
                 $('#email').closest('.form-group').addClass('has-error');
                 throw EALang.invalid_email;
             }

@@ -486,10 +486,11 @@ window.FrontendBook = window.FrontendBook || {};
 
             // Validate email address.
             // BGB: no validamos el email por si no tiene
-//            if (!GeneralFunctions.validateEmail($('#email').val())) {
-//                $('#email').parents('.form-group').addClass('has-error');
-//                throw EALang.invalid_email;
-//            }
+            var email = $('#email').val();
+            if (email && email != '' && !GeneralFunctions.validateEmail($('#email').val())) {
+                $('#email').parents('.form-group').addClass('has-error');
+                throw EALang.invalid_email;
+            }
 
             return true;
         } catch (exc) {

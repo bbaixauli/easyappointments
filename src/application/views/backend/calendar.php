@@ -236,9 +236,8 @@
                         <div class="row">
                             <div class="col-xs-12 col-sm-6">
                                 <div class="form-group">
-                                    <label for="email" class="control-label"><?= lang('email') ?> *</label>
-                                    <input type="text" id="email" class="required form-control" maxlength="120" />
-                                    <small id="emailHelp" class="form-text text-muted">Si no tiene <?= lang('email') ?> introduzca su nombre y apellidos</small>
+                                    <label for="email" class="control-label"><?= lang('email') ?></label>
+                                    <input type="text" id="email" class="form-control" maxlength="120" />
                                 </div>
                             </div>
                             <div class="col-xs-12 col-sm-6">
