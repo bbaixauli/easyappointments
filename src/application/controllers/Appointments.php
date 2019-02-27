@@ -648,6 +648,7 @@ class Appointments extends CI_Controller {
 
             // Get the service record.
             $this->load->model('services_model');
+            $this->load->model('settings_model');
             $service = $this->services_model->get_row($service_id);
 
             for ($i = 1; $i <= $number_of_days_in_month; $i++)
@@ -660,10 +661,13 @@ class Appointments extends CI_Controller {
                     $unavailable_dates[] = $current_date->format('Y-m-d');
                     continue;
                 }
+                
+                $book_advance_timeout = $this->settings_model->get_setting('book_advance_timeout');
 
                 // Finding at least one slot of availablity
                 foreach ($provider_list as $curr_provider_id)
                 {
+
                     // Get the provider record.
                     $curr_provider = $this->providers_model->get_row($curr_provider_id);
                     
@@ -673,6 +677,21 @@ class Appointments extends CI_Controller {
 
                     $available_hours = $this->_calculate_available_hours($empty_periods, $current_date->format('Y-m-d'),
                         $service['duration'], $manage_mode, $service['availabilities_type']);
+                    // BGB: comprobamos que se puede pedir cita por el book_advance_timeout
+                    if ($current_date->format('Y-m-d') === date('Y-m-d'))
+                    {
+
+                        foreach ($available_hours as $index => $value)
+                        {
+                            $available_hour = strtotime($value);
+                            $current_hour = strtotime('+' . $book_advance_timeout . ' minutes', strtotime('now'));
+                            if ($available_hour <= $current_hour)
+                            {
+                                unset($available_hours[$index]);
+                            }
+                        }
+                    }
+                        
                     if (! empty($available_hours)) break;
                     
                     if ($service['attendants_number'] > 1)
@@ -681,6 +700,7 @@ class Appointments extends CI_Controller {
                             $curr_provider);
                         if (! empty($available_hours)) break;
                     }
+                    
                 }
 
                 // No availability amongst all the provider
