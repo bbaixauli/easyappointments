@@ -12,6 +12,9 @@ can download and install it **even for commercial use**. Easy!Appointments will 
 your existing website, because it can be installed in a single folder of the server and of course,
 both sites can share the same database.
 
+[BGB] Versión con los cambios requeridos para su uso en la petición de cita previa con motivo
+de las crisis sanitaria del COVID-19
+
 ### Features
 
 The project was designed to be flexible and reliable so as to be able to meet the needs of any

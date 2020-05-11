@@ -163,6 +163,7 @@
                                     }
                                 ?>
                             </div>
+<!-- No mostramos la selección del técnico
 
                             <div class="form-group">
                                 <label for="select-provider">
@@ -170,7 +171,10 @@
                                 </label>
 
                                 <select id="select-provider" class="col-xs-12 col-sm-4 form-control"></select>
-                            </div>
+                </div>
+-->
+
+                            <input type="hidden" id="select-provider" value="any-provider"/>
 
                             <div id="service-description" style="display:none;"></div>
                         </div>

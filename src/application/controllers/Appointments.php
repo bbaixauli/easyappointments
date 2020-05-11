@@ -651,6 +651,11 @@ class Appointments extends CI_Controller {
             $this->load->model('settings_model');
             $service = $this->services_model->get_row($service_id);
 
+            // BGB creo el dia de hoy para no tener que crearlo continuemente y calculo fecha m�xima
+            $today = new DateTime(date('Y-m-d 00:00:00'));
+            $max_date = new DateTime(date('Y-m-d 00:00:00'));
+            $max_date->add(new DateInterval('P15D'));
+
             for ($i = 1; $i <= $number_of_days_in_month; $i++)
             {
                 $current_date = new DateTime($selected_date->format('Y-m') . '-' . $i);
@@ -658,6 +663,10 @@ class Appointments extends CI_Controller {
                 if ($current_date < new DateTime(date('Y-m-d 00:00:00')))
                 {
                     // Past dates become immediately unavailable.
+                    $unavailable_dates[] = $current_date->format('Y-m-d');
+                    continue;
+                } else if ($current_date > $max_date) {
+                    // Restringimos las peticiones a 15 días.
                     $unavailable_dates[] = $current_date->format('Y-m-d');
                     continue;
                 }
@@ -765,6 +774,15 @@ class Appointments extends CI_Controller {
             }
         }
 
+        // Comprobamos la fecha máxima
+        $start_datetime = date('Y-m-d', strtotime($appointment['start_datetime']));
+        $start_date = new DateTime($start_datetime);
+        $max_date = new DateTime(date('Y-m-d 00:00:00'));
+        $max_date->add(new DateInterval('P15D'));
+        if ($start_date > $max_date) {
+            return FALSE;
+        }
+
         if ($appointment['id_users_provider'] === ANY_PROVIDER)
         {
             $appointment['id_users_provider'] = $this->_search_any_provider($appointment['id_services'],
@@ -775,7 +793,7 @@ class Appointments extends CI_Controller {
 
         $available_periods = $this->_get_provider_available_time_periods(
             $appointment['id_users_provider'], $appointment['id_services'],
-            date('Y-m-d', strtotime($appointment['start_datetime'])),
+            $start_date,
             $exclude_appointments);
 
         $is_still_available = FALSE;
