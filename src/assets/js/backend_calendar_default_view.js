@@ -62,6 +62,24 @@ window.BackendCalendarDefaultView = window.BackendCalendarDefaultView || {};
         });
 
         /**
+         * BGB
+         * Event: Click botón descarga de citas
+         */
+        $calendarPage.on('click', '#download-appointments', function () {
+
+            if ($('#select-filter-item').val() === null) {
+               return;
+            }
+
+            _downloadAppointments(
+               $('#select-filter-item').val(),
+               $('#select-filter-item option:selected').attr('type'),
+               $('#calendar').fullCalendar('getView').start,
+               $('#calendar').fullCalendar('getView').end);
+
+        });
+
+        /**
          * Event: Popover Close Button "Click"
          *
          * Hides the open popover element.
@@ -1097,6 +1115,62 @@ window.BackendCalendarDefaultView = window.BackendCalendarDefaultView || {};
         }, 'json').fail(GeneralFunctions.ajaxFailureHandler);
     }
 
+    function _downloadAppointments(recordId, filterType, startDate, endDate) {
+        var url = GlobalVariables.baseUrl + '/index.php/backend_api/ajax_get_calendar_appointments';
+        var data = {
+            csrfToken: GlobalVariables.csrfToken,
+            record_id: recordId,
+            start_date: startDate.format('YYYY-MM-DD'),
+            end_date: endDate.format('YYYY-MM-DD'),
+            filter_type: filterType
+        };
+
+        $.post(url, data, function (response) {
+            if (!GeneralFunctions.handleAjaxExceptions(response)) {
+                return;
+            }
+
+            var objArray = response.appointments;
+
+            var array = typeof objArray != 'object' ? JSON.parse(objArray) : objArray;
+
+            var str = "inicio;fin;nombre;apellido;telefono;email;servicio;tecnico;notas\r\n";
+            for (var i = 0; i < array.length; i++) {
+                var line = '';
+
+                line += array[i].start_datetime+";";
+                line += array[i].end_datetime+";";
+                line += "\""+array[i].customer.first_name+"\";";
+                line += "\""+array[i].customer.last_name+"\";";
+                line += array[i].customer.phone_number+";";
+                line += array[i].customer.email+";";
+                line += "\""+array[i].service.name+"\";";
+                line += "\""+array[i].provider.first_name+" "+array[i].provider.last_name+"\";";
+                line += "\""+array[i].notes+"\";";
+
+                line.slice(0,line.Length-1); 
+
+                str += line + '\r\n';
+            }
+            var blob = new Blob(["\ufeff", str], {type: "text/csv;charset=utf-8;"});
+            var start = $('#calendar').fullCalendar('getView').start.format('YYYY-MM-DD');
+            var end = $('#calendar').fullCalendar('getView').end.format('YYYY-MM-DD');
+            var fileName = "citas_"+start+"_"+end+".csv";
+            if (navigator.msSaveBlob){
+                navigator.msSaveBlob(blob, fileName);
+            } else {
+                var downloadLink = document.createElement("a");
+                var url = URL.createObjectURL(blob);
+                downloadLink.href = url;
+                downloadLink.download = fileName;
+
+                document.body.appendChild(downloadLink);
+                downloadLink.click();
+                document.body.removeChild(downloadLink);
+            }
+
+        }, 'json').fail(GeneralFunctions.ajaxFailureHandler);
+    }
 
     exports.initialize = function () {
         // Dynamic date formats.

@@ -651,6 +651,17 @@ class Appointments extends CI_Controller {
             $this->load->model('settings_model');
             $service = $this->services_model->get_row($service_id);
 
+<<<<<<< Updated upstream
+=======
+            // BGB creo el dia de hoy para no tener que crearlo continuemente y calculo fecha máxima
+            $today = new DateTime(date('Y-m-d 00:00:00'));
+            $book_max_date = $this->settings_model->get_setting('book_max_days');
+            if ($book_max_date != '0') {
+                $max_date = new DateTime(date('Y-m-d 00:00:00'));
+                $max_date->add(new DateInterval('P' . $book_max_date . 'D'));
+            }
+
+>>>>>>> Stashed changes
             for ($i = 1; $i <= $number_of_days_in_month; $i++)
             {
                 $current_date = new DateTime($selected_date->format('Y-m') . '-' . $i);
@@ -660,6 +671,12 @@ class Appointments extends CI_Controller {
                     // Past dates become immediately unavailable.
                     $unavailable_dates[] = $current_date->format('Y-m-d');
                     continue;
+<<<<<<< Updated upstream
+=======
+                } else if ($book_max_date != '0' && $current_date > $max_date) {
+                    $unavailable_dates[] = $current_date->format('Y-m-d');
+                    continue;
+>>>>>>> Stashed changes
                 }
                 
                 $book_advance_timeout = $this->settings_model->get_setting('book_advance_timeout');
@@ -765,6 +782,21 @@ class Appointments extends CI_Controller {
             }
         }
 
+<<<<<<< Updated upstream
+=======
+        // Comprobamos la fecha mÃ¡xima
+        $start_datetime = date('Y-m-d', strtotime($appointment['start_datetime']));
+        $start_date = new DateTime($start_datetime);
+        $book_max_date = $this->settings_model->get_setting('book_max_days');
+        if ($book_max_date != '0') {
+            $max_date = new DateTime(date('Y-m-d 00:00:00'));
+            $max_date->add(new DateInterval('P' . $book_max_date . 'D'));
+            if ($start_date > $max_date) {
+                return FALSE;
+            }
+        }
+
+>>>>>>> Stashed changes
         if ($appointment['id_users_provider'] === ANY_PROVIDER)
         {
             $appointment['id_users_provider'] = $this->_search_any_provider($appointment['id_services'],
@@ -775,7 +807,11 @@ class Appointments extends CI_Controller {
 
         $available_periods = $this->_get_provider_available_time_periods(
             $appointment['id_users_provider'], $appointment['id_services'],
+<<<<<<< Updated upstream
             date('Y-m-d', strtotime($appointment['start_datetime'])),
+=======
+            $start_datetime,
+>>>>>>> Stashed changes
             $exclude_appointments);
 
         $is_still_available = FALSE;

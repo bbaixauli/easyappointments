@@ -295,6 +295,32 @@
                                     <?= lang('book_advance_timeout_hint') ?>
                                 </p>
                             </div>
+
+                            <br>
+
+                            <h4><?= lang('book_max_days') ?></h4>
+                            <div class="form-group">
+                                <label for="book-max-days" class="control-label"><?= lang('max_days') ?></label>
+                                <input id="book-max-days" data-field="book_max_days" class="form-control" type="number" min="0">
+                                <p class="help-block">
+                                    <?= lang('book_max_days_hint') ?>
+                                </p>
+                            </div>
+
+                            <br>
+
+                            <h4><?= lang('hide_provider') ?></h4>
+                            <div class="form-group">
+                                <div class="checkbox">
+                                    <label>
+                                        <input type="checkbox" id="any-provider">
+                                        <?= lang('only_any_provider') ?>
+                                    </label>
+                                </div>
+                                <p class="help-block">
+                                    <?= lang('only_any_provider_hint') ?>
+                                </p>
+                            </div>
                         </div>
                         <div class="col-xs-12 col-sm-5 breaks-wrapper">
                             <h4><?= lang('breaks') ?></h4>

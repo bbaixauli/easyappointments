@@ -201,7 +201,9 @@ class Backend_api extends CI_Controller {
             // Get appointments
             $record_id = $this->db->escape($_POST['record_id']);
             $start_date = $this->db->escape($_POST['start_date']);
-            $end_date = $this->db->escape(date('Y-m-d', strtotime($_POST['end_date'] . ' +1 day')));
+            // [BGB] Ya se manda la fecha fin, no hace falta poner +1 day
+            //$end_date = $this->db->escape(date('Y-m-d', strtotime($_POST['end_date'] . ' +1 day')));
+            $end_date = $this->db->escape(date('Y-m-d', strtotime($_POST['end_date'])));
 
             $where_clause = $where_id . ' = ' . $record_id . '
                 AND ((start_datetime > ' . $start_date . ' AND start_datetime < ' . $end_date . ') 
@@ -620,22 +622,35 @@ class Backend_api extends CI_Controller {
             $key = $this->db->escape_str($this->input->post('key'));
             $key = strtoupper($key);
 
-            $where_clause =
-                '(first_name LIKE upper("%' . $key . '%") OR ' .
-                'last_name  LIKE upper("%' . $key . '%") OR ' .
-                'email LIKE upper("%' . $key . '%") OR ' .
-                'phone_number LIKE upper("%' . $key . '%") OR ' .
-                'address LIKE upper("%' . $key . '%") OR ' .
-                'city LIKE upper("%' . $key . '%") OR ' .
-                'zip_code LIKE upper("%' . $key . '%") OR ' .
-                'notes LIKE upper("%' . $key . '%"))';
+            $where_clause = '';
+
+            // [BGB] Si se pasa el key 'WITH_APPOINTMENT' solo devuelve los usuarios con citas a partir de hoy (y las cita pendientes)
+            // además mejoramos un poco la consulta para que si no se pasa $key, no se añada el where
+            if ($key == 'WITH_APPOINTMENT') {
+                $today = date('Ymd');
+                $where_clause = "(exists (select 1 from ea_appointments ea where ea.id_users_customer = ea_users.id and (DATE_FORMAT(ea.start_datetime, '%Y%m%d') > '".$today."' or DATE_FORMAT(ea.end_datetime, '%Y%m%d' > '".$today."'))))";
+            } else if ($key != '') {
+                $where_clause =
+                    '(first_name LIKE upper("%' . $key . '%") OR ' .
+                    'last_name  LIKE upper("%' . $key . '%") OR ' .
+                    'email LIKE upper("%' . $key . '%") OR ' .
+                    'phone_number LIKE upper("%' . $key . '%") OR ' .
+                    'address LIKE upper("%' . $key . '%") OR ' .
+                    'city LIKE upper("%' . $key . '%") OR ' .
+                    'zip_code LIKE upper("%' . $key . '%") OR ' .
+                    'notes LIKE upper("%' . $key . '%"))';
+            }
 
             $customers = $this->customers_model->get_batch($where_clause);
 
             foreach ($customers as &$customer)
             {
-                $appointments = $this->appointments_model
-                    ->get_batch(['id_users_customer' => $customer['id']]);
+                $where = 'id_users_customer ='.$customer['id'].' ';
+                if ($key == 'WITH_APPOINTMENT') {
+                    $today = date('Ymd');
+                    $where .= " AND (DATE_FORMAT(start_datetime, '%Y%m%d') > '".$today."' or DATE_FORMAT(end_datetime, '%Y%m%d' > '".$today."')) ";
+                }
+                $appointments = $this->appointments_model->get_batch($where);
 
                 foreach ($appointments as &$appointment)
                 {

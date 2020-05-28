@@ -71,6 +71,10 @@ window.BackendSettings = window.BackendSettings || {};
                 $('#require-captcha').addClass('active');
             }
 
+            if (setting.name === 'any_provider') {
+                $('#any-provider').prop('checked', setting.value === '1');
+            }
+
             if (setting.name === 'display_cookie_notice') {
                 $('#display-cookie-notice').prop('checked', setting.value === '1');
             }

@@ -163,6 +163,7 @@
                                     }
                                 ?>
                             </div>
+<<<<<<< Updated upstream
 
                             <div class="form-group">
                                 <label for="select-provider">
@@ -171,6 +172,22 @@
 
                                 <select id="select-provider" class="col-xs-12 col-sm-4 form-control"></select>
                             </div>
+=======
+                            <!-- [BGB] No mostramos la selección del técnico si esta configurado -->
+                            <?php
+                            if ($this->settings_model->get_setting('any_provider') === '0') { 
+
+                                echo '<div class="form-group">'.
+                                     ' <label for="select-provider">'.
+                                     '  <strong>'.lang('select_provider').'</strong>'.
+                                     ' </label>'.
+                                     ' <select id="select-provider" class="col-xs-12 col-sm-4 form-control"></select>'.
+                                    '</div>';
+                            } else {
+                                echo '<input type="hidden" id="select-provider" value="any-provider"/>';
+                            }
+                            ?>
+>>>>>>> Stashed changes
 
                             <div id="service-description" style="display:none;"></div>
                         </div>
@@ -244,14 +261,14 @@
                                     <div class="form-group">
                                         <label for="email" class="control-label"><?= lang('email') ?></label>
                                         <input type="text" id="email" class="form-control" maxlength="120" />
-                                        <small id="emailHelp" class="form-text text-muted">Se utiliza para enviar confirmaciones y notificaciones y permite modificar la cita</small>
+                                        <small id="emailHelp" class="form-text text-muted"><?= lang('email_book_hint') ?></small>
                                     </div>
                                 </div>
                                 <div class="col-xs-12 col-sm-6">
                                     <div class="form-group">
                                         <label for="phone-number" class="control-label"><?= lang('phone_number') ?> *</label>
                                         <input type="text" id="phone-number" class="required form-control" maxlength="60" />
-                                        <small id="phone-numberHelp" class="form-text text-muted">Indique su tel&eacute;fono m&oacute;vil personal si tiene</small>
+                                         <small id="phone-numberHelp" class="form-text text-muted"><?= lang('phone_number_book_hint') ?></small>
                                     </div>
                                 </div>
                             </div>

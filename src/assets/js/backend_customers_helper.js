@@ -353,6 +353,8 @@
         display = display || false;
 
         var postUrl = GlobalVariables.baseUrl + '/index.php/backend_api/ajax_filter_customers';
+        // [BGB] por defecto, mostramos solo los que tienen citas
+        if (key === '') key = 'with_appointment';
         var postData = {
             csrfToken: GlobalVariables.csrfToken,
             key: key

@@ -492,6 +492,14 @@ window.FrontendBook = window.FrontendBook || {};
                 throw EALang.invalid_email;
             }
 
+            // [BGB] validamos el teléfono
+            var phone = $('#phone-number').val();
+            phone = phone.replace(/\s+/g, '');
+            if (!/^\d{9}$/.test(phone)) {
+                $('#phone-number').parents('.form-group').addClass('has-error');
+                throw EALang.invalid_phone_number;
+            }
+
             return true;
         } catch (exc) {
             $('#form-message').text(exc);

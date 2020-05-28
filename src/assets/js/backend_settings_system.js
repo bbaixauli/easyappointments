@@ -93,6 +93,18 @@
             value: $('#book-advance-timeout').val()
         });
 
+        // [BGB] añadimos días máximos de antelación
+        settings.push({
+            name: 'book_max_days',
+            value: $('#book-max-days').val()
+        });
+
+        // [BGB] añadimos mostrar solo cualquier proveedor
+        settings.push({
+            name: 'any_provider',
+            value: $('#any-provider').prop('checked') ? '1' : '0'
+        });
+
         // Legal Contents Tab
         settings.push({
             name: 'display_cookie_notice',

@@ -758,7 +758,8 @@ body .form-horizontal .controls {
     cursor: pointer;
 }
 
-#business-logic #book-advance-timeout {
+#business-logic #book-advance-timeout,
+#business-logic #book-max-days {
     width: 100px;
 }
 

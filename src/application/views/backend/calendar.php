@@ -80,6 +80,11 @@
                 <?= lang('reload') ?>
             </button>
 
+            <button id="download-appointments" class="btn btn-default" title="<?= lang('download_appointments_hint') ?>">
+                <span class="glyphicon glyphicon-download"></span>
+                <?= lang('download') ?>
+            </button>
+
             <button id="toggle-fullscreen" class="btn btn-default">
                 <span class="glyphicon glyphicon-fullscreen"></span>
             </button>

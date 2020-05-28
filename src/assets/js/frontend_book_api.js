@@ -258,17 +258,28 @@ window.FrontendBookApi = window.FrontendBookApi || {};
         }
 
         // If all the days are unavailable then hide the appointments hours.
-        if (unavailableDates.length === numberOfDays) {
-            $('#available-hours').text(EALang.no_available_hours);
-        }
+	    // [BGB] puede que no sea el mismo mes
+        //if (unavailableDates.length === numberOfDays) {
+        //    $('#available-hours').text(EALang.no_available_hours);
+        //}
 
         // Grey out unavailable dates.
+        var disabled = 0;
         $('#select-date .ui-datepicker-calendar td:not(.ui-datepicker-other-month)').each(function (index, td) {
             selectedDate.set({day: index + 1});
             if ($.inArray(selectedDate.toString('yyyy-MM-dd'), unavailableDates) != -1) {
-                $(td).addClass('ui-datepicker-unselectable ui-state-disabled');
+                // [BGB] nos aseguramos que estamos en el mismo mes y año
+                var month = $(td).data("month") || (selectedDate.getMonth() +1);
+                var year = $(td).data("year") || selectedDate.getFullYear();
+                if (month == selectedDate.getMonth() && year == selectedDate.getFullYear()) {
+                    $(td).addClass('ui-datepicker-unselectable ui-state-disabled');
+                    disabled++;
+                }
             }
         });
+        if (disabled === numberOfDays) {
+            $('#available-hours').text(EALang.no_available_hours);
+        }
 
         processingUnavailabilities = false;
     }

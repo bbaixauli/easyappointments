@@ -345,6 +345,8 @@ class Appointments_Model extends CI_Model {
         {
             $this->db->where($where_clause);
         }
+        //[BGB] ordenamos por fecha de inicio (viene bien para la descarga de citas)
+        $this->db->order_by('start_datetime', 'ASC');
 
         $appointments = $this->db->get('ea_appointments')->result_array();
 
