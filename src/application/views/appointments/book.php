@@ -163,16 +163,6 @@
                                     }
                                 ?>
                             </div>
-<<<<<<< Updated upstream
-
-                            <div class="form-group">
-                                <label for="select-provider">
-                                    <strong><?= lang('select_provider') ?></strong>
-                                </label>
-
-                                <select id="select-provider" class="col-xs-12 col-sm-4 form-control"></select>
-                            </div>
-=======
                             <!-- [BGB] No mostramos la selección del técnico si esta configurado -->
                             <?php
                             if ($this->settings_model->get_setting('any_provider') === '0') { 
@@ -187,7 +177,6 @@
                                 echo '<input type="hidden" id="select-provider" value="any-provider"/>';
                             }
                             ?>
->>>>>>> Stashed changes
 
                             <div id="service-description" style="display:none;"></div>
                         </div>
