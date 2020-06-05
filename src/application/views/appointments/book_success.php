@@ -65,17 +65,28 @@
     <script src="https://apis.google.com/js/client.js"></script>
 
     <script>
-        var GlobalVariables = {
-            'csrfToken'         : <?= json_encode($this->security->get_csrf_hash()) ?>,
-            'appointmentData'   : <?= json_encode($appointment_data) ?>,
-            'providerData'      : <?= json_encode($provider_data) ?>,
-            'serviceData'       : <?= json_encode($service_data) ?>,
-            'companyName'       : <?= json_encode($company_name) ?>,
-            'googleApiKey'      : <?= json_encode(Config::GOOGLE_API_KEY) ?>,
-            'googleClientId'    : <?= json_encode(Config::GOOGLE_CLIENT_ID) ?>,
-            'googleApiScope'    : 'https://www.googleapis.com/auth/calendar'
-        };
-
+<?php 
+    if ($this->config->item('google_sync_feature')) {
+        echo "        var GlobalVariables = {\n";
+        echo "            'csrfToken'         : " . json_encode($this->security->get_csrf_hash()) . ",\n";
+        echo "            'appointmentData'   : " . json_encode($appointment_data) . ",\n";
+        echo "            'providerData'      : " . json_encode($provider_data) . ",\n";
+        echo "            'serviceData'       : " . json_encode($service_data) . ",\n";
+        echo "            'companyName'       : " . json_encode($company_name) . ",\n";
+        echo "            'googleApiKey'      : " . json_encode(Config::GOOGLE_API_KEY) . ",\n";
+        echo "            'googleClientId'    : " . json_encode(Config::GOOGLE_CLIENT_ID) . ",\n";
+        echo "            'googleApiScope'    : 'https://www.googleapis.com/auth/calendar'\n";
+        echo "        };\n";
+    } else {
+        echo "        var GlobalVariables = {\n";
+        echo "            'csrfToken'         : " . json_encode($this->security->get_csrf_hash()) . ",\n";
+        echo "            'companyName'       : " . json_encode($company_name) . ",\n";
+        echo "            'googleApiKey'      : " . json_encode(Config::GOOGLE_API_KEY) . ",\n";
+        echo "            'googleClientId'    : " . json_encode(Config::GOOGLE_CLIENT_ID) . ",\n";
+        echo "            'googleApiScope'    : 'https://www.googleapis.com/auth/calendar'\n";
+        echo "        };\n";
+    }
+?>
         var EALang = <?= json_encode($this->lang->language) ?>;
     </script>
 
