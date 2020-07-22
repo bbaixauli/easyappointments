@@ -269,7 +269,7 @@ window.FrontendBookApi = window.FrontendBookApi || {};
             selectedDate.set({day: index + 1});
             if ($.inArray(selectedDate.toString('yyyy-MM-dd'), unavailableDates) != -1) {
                 // [BGB] nos aseguramos que estamos en el mismo mes y año
-                var month = $(td).data("month") || (selectedDate.getMonth() +1);
+                var month = $(td).data("month") || (selectedDate.getMonth());
                 var year = $(td).data("year") || selectedDate.getFullYear();
                 if (month == selectedDate.getMonth() && year == selectedDate.getFullYear()) {
                     $(td).addClass('ui-datepicker-unselectable ui-state-disabled');
